@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block titulo %} Empleado {% endblock %}
+
+{% block body %} 
+<body>
+    <div  class="container d-flex align-items-center flex-column ">
+        <img class="masthead-avatar mb-5" src="https://dynamic.brandcrowd.com/asset/logo/8a8ab187-ec74-41f2-904f-c6a54f963e05/logo-search-grid-1x?v=637680972085430000&text=Farmacia+La+chabelita&colorpalette=blue" alt="Logotipo de la farmacia" />    
+      </div>
+
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <h3 style="text-align:center;">Edicion de Registro de Empleados </h3>
+        <div class="card">
+            <div class="card-body">
+                <form action="{% url 'editar_empleado' empleado.id %}" method="POST">{% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" id="numid" name="numid" value="{{empleado.id}}" class="form-control" placeholder="Id"
+                            minlength="10" maxlength="10" required>
+                    </div>
+                    <div class="form-group py-3">
+                        <input type="text" id="txtNombres" name="txtNombres" value="{{empleado.nombres}}" class="form-control" placeholder="Nombres"
+                            maxlength="50" required>
+                    </div>
+                    <div class="form-group ">
+                        <input type="text" id="txtApellidos" name="txtApellidos" value="{{empleado.apellidos}}" class="form-control" placeholder="Apellidos"
+                            maxlength="50" required>
+                    </div>
+                    <div class="form-group py-3">
+                        <input type="text" id="numTelefono" name="numTelefono" value="{{empleado.telefono}}" class="form-control" placeholder="Telefono"
+                            maxlength="50" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txtCargo" name="txtCargo" value="{{empleado.cargo}}" class="form-control" placeholder="Cargo"
+                            maxlength="50" required>
+                    </div>
+                    <div class="d-grid gap-2 py-3">
+                        <button type="submit" class="btn btn-info btn-block text-white">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block titulo %} Medicamento {% endblock %}
+
+{% block body %} 
+<body>
+  <div  class="container d-flex align-items-center flex-column ">
+    <img class="masthead-avatar mb-5" src="https://dynamic.brandcrowd.com/asset/logo/8a8ab187-ec74-41f2-904f-c6a54f963e05/logo-search-grid-1x?v=637680972085430000&text=Farmacia+La+chabelita&colorpalette=blue" alt="Logotipo de la farmacia" />    
+  </div>
+
+  <a href="{% url 'medicamento' %}" class="btn btn-info text-white">Regresar</a>
+
+
+  <div class="row">
+    <div class="col-md-4 offset-md-4">
+      <h2 class="container py-4" style="text-align:center;">Agregar medicamentos</h2>
+      <div class="card">
+          <div class="card-body">
+              <form action="{% url 'editar_medicamento' medicamento.id %}" method="POST">{% csrf_token %}
+                  <div class="form-group ">
+                      <input type="text" id="txtNombre" name="txtNombre" class="form-control" value="{{medicamento.nombre}}" placeholder="Nombre del medicamento"
+                          maxlength="50" required>
+                  </div>
+                  <div class="form-group py-3">
+                    <input type="text" id="numFechaexpiracion" name="numFechaexpiracion" class="form-control" value="{{medicamento.fecha_expiracion }}" placeholder="Fecha_expiracion" minlength="10" maxlength="10" required>
+                  </div>
+                  <div class="form-group ">
+                    <input type="text" id="numFechaproduccion" name="numFechaproduccion" class="form-control" value="{{medicamento.fecha_produccion }}" placeholder="Fecha_produccion" maxlength="50" required>
+                  </div>
+                    <div class="form-group py-3">
+                        <input type="text" id="numCompra" name="numCompra" class="form-control" value="{{medicamento.precio_Compra }}" placeholder="Precio de compra"
+                            maxlength="50" required>
+                    </div>
+                    <div class="form-group ">
+                        <input type="text" id="numVenta" name="numVenta" class="form-control" value="{{medicamento.precio_venta }}" placeholder="Precio de venta"
+                            maxlength="50" required>
+                    </div>
+                  <div class="d-grid gap-2 py-3">
+                    <button class="btn btn-info text-white"  type="submit">Agregar</button>
+                  </div>
+              </form>
+          </div>
+      </div>
+</body>
+{% endblock %}

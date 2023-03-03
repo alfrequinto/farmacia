@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block titulo %} Inicio {% endblock %}
+
+{% block body %} 
+<body>
+    <div  class="container d-flex align-items-center flex-column ">
+        <img class="masthead-avatar mb-5" src="https://dynamic.brandcrowd.com/asset/logo/8a8ab187-ec74-41f2-904f-c6a54f963e05/logo-search-grid-1x?v=637680972085430000&text=Farmacia+La+chabelita&colorpalette=blue" alt="Logotipo de la farmacia" />
+        <h1 class="masthead-heading  mb-5">SISTEMA LA CHABELITA</h1>
+        
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col contenedor">
+                <div class="card" style="width: 18rem;">
+                    <img src="https://static7.depositphotos.com/1000291/740/i/450/depositphotos_7406041-stock-photo-pharmacy-chemist-woman-in-drugstore.jpg" alt="Foto de farmacia">
+                    <div class="card-body">
+                      <h5 class="card-title">Empleados</h5>
+                      <p class="card-text">Se mostraran los empleados que trabajan en nuestra farmaceutica, tendra la opcion de agrega y eliminar a los empleados.</p>
+                      <a href="g_empleados.html" class="btn btn-primary">Ver</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col contenedor">
+                <div class="card" style="width: 19rem;">
+                    <img src="https://st.depositphotos.com/1003580/2153/i/450/depositphotos_21532369-stock-photo-empty-background-of-modern-factory.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                    <h5 class="card-title">Administradores </h5>
+                    <p class="card-text">Se le presenta una lista de los administradores de nuestra farmaceutica.</p>
+                    <a href="g_administrador.html" class="btn btn-primary">Ver</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col contenedor">
+                <div class="card">
+                    <img src="https://static9.depositphotos.com/1034300/1086/i/450/depositphotos_10865400-stock-photo-industry-visitors-5.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Nuestros proveedores</h5>
+                      <p class="card-text">Se mostraran nuestros proveedores de las medicinas que vendemos.</p>
+                      <a href="g_proveedor.html" class="btn btn-primary">Ver</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col contenedor">
+                <div class="card">
+                    <img src="https://static3.depositphotos.com/1005507/202/i/450/depositphotos_2029545-stock-photo-pharmaceutical-products.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Medicamentos</h5>
+                      <p class="card-text">Una lista de todos nuestros insumos medicos que dispones dentro de nuestra farmacia.</p>
+                      <a href="g_medicamento.html" class="btn btn-primary">Ver</a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</body>
+{% endblock %}

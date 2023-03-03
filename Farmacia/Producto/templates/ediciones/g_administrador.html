@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block titulo %} Administradores {% endblock %}
+
+{% block body %} 
+<body>
+  <div  class="container d-flex align-items-center flex-column ">
+    <img class="masthead-avatar mb-5" src="https://dynamic.brandcrowd.com/asset/logo/8a8ab187-ec74-41f2-904f-c6a54f963e05/logo-search-grid-1x?v=637680972085430000&text=Farmacia+La+chabelita&colorpalette=blue" alt="Logotipo de la farmacia" />    
+  </div>
+  <form method="get" action="{% url 'administrador' %}">
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" name="q" placeholder="Buscar por ID o nombre..." value="{{ request.GET.q }}">
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit">Buscar</button>
+        </div>
+    </div>
+  </form>
+
+  <ul class="nav nav-pills nav-fill">
+    <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="{% url 'administrador' %}">Administradores</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'principal' %}">Pagina principal</a>
+    </li>
+  </ul>
+  
+  <div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+      <h2 class="container py-4" style="text-align:center;">Agregar Administradores</h2>
+      <div class="card">
+          <div class="card-body">
+              <form action="{% url 'registrar_administrador' %}" method="POST">{% csrf_token %}
+                  <div class="form-group py-3">
+                      <input type="text" id="txtNombres" name="txtNombres" class="form-control" placeholder="Nombres"
+                          maxlength="50" required>
+                  </div>
+                  <div class="form-group ">
+                      <input type="text" id="txtApellidos" name="txtApellidos" class="form-control" placeholder="Apellidos"
+                          maxlength="50" required>
+                  </div>
+                  <div class="form-group py-3">
+                    <input type="text" id="numCodigo" name="numCodigo" class="form-control" placeholder="Codigo"
+                        minlength="10" maxlength="10" required>
+                  </div>
+                  <div class="form-group py-3">
+                    <input type="text" id="numTelefono" name="numTelefono" class="form-control" placeholder="Telefono"
+                        maxlength="50" required>
+                </div>
+                  <div class="d-grid gap-2 py-3">
+                    <button class="btn btn-info text-white" type="submit">Agregar</button>
+                  </div>
+              </form>
+          </div>
+      </div>
+ 
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+      <h2 class="container py-4" style="text-align:center;">Lista de Administradores</h2>
+      <div class="table-responsive py-2">
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nombres</th>
+                <th>Apellidos</th>
+                <th>Codigo</th>
+                <th>Telefono</th>
+                <th colspan="2">Opciones</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for c in admin %}
+                <tr>
+                    <td>{{c.id}}</td>
+                    <td>{{c.nombres}}</td>
+                    <td>{{c.apellidos}}</td>
+                    <td>{{c.codigo}}</td>
+                    <td>{{c.telefono}}</td>
+                    <td><a href="edicion_administrador/{{c.id}}" class="btn btn-info text-white">Editar</a></td>
+                    <td><a href="eliminarAdministrador/{{c.id}}" class="btn btn-danger btneliminar">Eliminar</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+{% endblock %}

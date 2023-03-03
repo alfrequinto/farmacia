@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block titulo %} Medicamentos {% endblock %}
+
+{% block body %} 
+<body>
+  <div  class="container d-flex align-items-center flex-column ">
+    <img class="masthead-avatar mb-5" src="https://dynamic.brandcrowd.com/asset/logo/8a8ab187-ec74-41f2-904f-c6a54f963e05/logo-search-grid-1x?v=637680972085430000&text=Farmacia+La+chabelita&colorpalette=blue" alt="Logotipo de la farmacia" />    
+  </div>
+  <form method="get" action="{% url 'medicamento' %}">
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" name="q" placeholder="Buscar por ID o nombre..." value="{{ request.GET.q }}">
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit">Buscar</button>
+        </div>
+    </div>
+  </form>
+
+  <ul class="nav nav-pills nav-fill">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="g_medicamento.html">Medicamentos</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="g_principal.html">Pagina principal</a>
+    </li>
+  </ul>
+  
+  <div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+      <h2 class="container py-4" style="text-align:center;">Agregar Medicamentos</h2>
+      <div class="card">
+          <div class="card-body">
+              <form action="{% url 'registro_medicamento' %}" method="POST">{% csrf_token %}
+                <div class="form-group">
+                  <input type="text" id="txtNombre" name="txtNombre" class="form-control" placeholder="Nombre del medicamento"
+                      maxlength="50" required>
+                </div>
+                <div class="form-group py-3">
+                  <input type="text" id="numFechaexpiracion" name="numFechaexpiracion" class="form-control" placeholder="Fecha_expiracion"
+                    minlength="10" maxlength="10" required>
+                </div>
+                <div class="form-group ">
+                  <input type="text" id="numFechaproduccion" name="numFechaproduccion" class="form-control" placeholder="Fecha_produccion"
+                    maxlength="50" required>
+                  </div>
+                <div class="form-group py-3">
+                    <input type="text" id="numCompra" name="numCompra" class="form-control" placeholder="Precio de compra"
+                        maxlength="50" required>
+                </div>
+                <div class="form-group ">
+                    <input type="text" id="numVenta" name="numVenta" class="form-control" placeholder="Precio de venta"
+                        maxlength="50" required>
+                </div>
+                  <div class="d-grid gap-2 py-3">
+                    <button class="btn btn-info text-white" type="submit">Agregar</button>
+                  </div>
+              </form>
+          </div>
+      </div>
+    </div>
+  </div>
+
+    <div class="col-sm-12 col-md-6 col-lg-12 col-xl-12">
+      <h2 class="container py-4" style="text-align:center;">Lista de medicamentos en stock</h2>
+      <div class="table-responsive py-2">
+        <table class="table table-striped">
+            <thead>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Fecha_expiracion</th>
+              <th>Fecha_produccion</th>
+              <th>Precio_Compra</th>
+              <th>Precio_venta</th>
+              <th colspan="">Opciones</th>
+            </thead>
+            <tbody>
+                {%for i in medicamento %}
+                <tr>
+                    <td>{{i.id}}</td>
+                    <td>{{i.nombre}}</td>
+                    <td>{{ i.fecha_expiracion|date:"d/m/Y" }}</td>
+                    <td>{{ i.fecha_produccion|date:"d/m/Y" }}</td>
+                    <td>{{i.precio_Compra}}</td>
+                    <td>{{i.precio_venta}}</td>
+                    <td>
+                      <a href="edicion_medicamento/{{i.id}}" class="btn btn-info text-white">Editar</a>
+                      <a href="eliminarMedicamento/{{i.id}}" class="btn btn-danger btneliminar">Eliminar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+      </div>
+    </div>
+</body>
+{% endblock %}
